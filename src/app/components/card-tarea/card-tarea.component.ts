@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Tarea } from '../../core/interfaces/tarea.interface';
 import { FucionesGlobales } from 'src/app/core/utils/funciones-globales';
 import { CommonModule } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
 
 @Component({
   selector: 'app-card-tarea',
@@ -13,12 +15,13 @@ import { CommonModule } from '@angular/common';
 })
 export class CardTareaComponent {
   @Input() tarea!: Tarea;
+  @Input() index!: number;
 
   private readonly funcionesGlobales = new FucionesGlobales();
+  private readonly modalService = inject(NgbModal);
 
 
   establecerPrioridad(priorodad: 'alta' | 'media' | 'baja' | 'completada') {
-    console.log(this.funcionesGlobales.establecerColorPrioridad(priorodad));
     return this.funcionesGlobales.establecerColorPrioridad(priorodad);
   }
 
@@ -51,19 +54,12 @@ export class CardTareaComponent {
     }
   }
 
-  /*                     @if (tarea.tipo === 'laboral') {
-                        <p><em class="bi bi-hammer "></em></p>
-                    } @else if (tarea.tipo === 'academica') {
-                        <p><em class="bi bi-laptop"></em></p>
-                    } @else if (tarea.tipo === 'familiar') {
-                        <p><em class="bi bi-person-heart"></em></p>
-                    } @else if (tarea.tipo === 'hogar') {
-                        <p><em class="bi bi-house-heart-fill"></em></p>
-                    } @else if (tarea.tipo === 'entretenimiento') {
-                        <p><em class="bi bi-controller"></em></p>
-                    } @else if (tarea.tipo === 'recreacion') {
-                        <p><em class="bi bi-balloon-fill"></em></p>
-                    } @else if (tarea.tipo === 'viaje') {
-                        <p><em class="bi bi-luggage-fill"></em></p>
-                    } */
+  abrirModalEliminar(index: number) {
+    const modalRef = this.modalService.open(ModalEliminarComponent);
+    modalRef.result.then((result: boolean) => {
+      if(result) {
+        console.log('Eliminar ', index);
+      }
+    })
+  }
 }

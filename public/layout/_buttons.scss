@@ -14,4 +14,40 @@
             color: $clr-icon-hover !important;
         }
     }
+
+    &-close {
+        width: 6px;
+        height: 6px;
+        top: 5px;
+        left: 5px;
+        gap: 0;
+        opacity: 0;
+        padding: 4px;
+        margin-right: 4px;
+    }
+
+    &__small {
+        min-width: 73px;
+        height: 34px;
+        padding: 6px 12px 8px 12px;
+        font-size: 14px;
+    }
+
+    &__gris-oscuro {
+        background-color: $clr-gris-500;
+        color: $clr-gris-50;
+        &:hover {
+            background-color: $clr-gris-300;
+            color: $clr-gris-500;
+        }
+    }
+
+    &__gris-claro {
+        background-color: $clr-gris-300;
+        color: $clr-gris-50;
+        &:hover {
+            background-color: $clr-gris-500;
+            color: $clr-gris-300;
+        }
+    }
 }

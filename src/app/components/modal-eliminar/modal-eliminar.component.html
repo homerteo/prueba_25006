@@ -1,0 +1,8 @@
+<app-modal-base [titulo]="titulo">
+    <div body>
+        <p class="modal-body">{{texto}}</p>
+    </div>
+    <div accion>
+        <button type="button" class="btn btn__small btn__gris-claro mx-3" (click)="eliminar()"> {{accion}} </button>
+    </div>
+</app-modal-base>
