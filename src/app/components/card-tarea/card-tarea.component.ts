@@ -4,6 +4,7 @@ import { FucionesGlobales } from 'src/app/core/utils/funciones-globales';
 import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
+import { FormularioCreacionComponent } from '../formulario-creacion/formulario-creacion.component';
 
 @Component({
   selector: 'app-card-tarea',
@@ -25,7 +26,7 @@ export class CardTareaComponent {
     return this.funcionesGlobales.establecerColorPrioridad(priorodad);
   }
 
-  establecerIconoTipo(tipo: 'laboral' | 'academica' | 'familiar' | 'hogar' | 'entretenimiento' | 'recreacion' | 'viaje') {
+  establecerIconoTipo(tipo: 'laboral' | 'academica' | 'familiar' | 'hogar' | 'entretenimiento' | 'recreacion' | 'viaje' | '') {
     switch (tipo) {
       case 'laboral':
         return 'bi bi-hammer'
@@ -61,5 +62,10 @@ export class CardTareaComponent {
         console.log('Eliminar ', index);
       }
     })
+  }
+
+  abrirEditarTarea(tarea: Tarea) {
+    const modalRef = this.modalService.open(FormularioCreacionComponent);
+    
   }
 }

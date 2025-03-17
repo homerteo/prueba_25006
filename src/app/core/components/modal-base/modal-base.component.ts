@@ -14,6 +14,7 @@ export class ModalBaseComponent {
   @Input() titulo!: string;
   @Input() data!: any;
   @Input() accion!: string;
+  @Input() esSidebar: boolean = false;
 
   activeModal = inject(NgbActiveModal);
 

@@ -9,12 +9,13 @@ import { Tarea } from '../../core/interfaces/tarea.interface';
 })
 export class TodoAppComponent {
   tarea: Tarea = {
-    descricion: 'hacer prueba tecnica',
+    descripcion: 'hacer prueba tecnica',
     tipo: 'laboral',
     lugar: 'Calle 44 #50-43',
     fecha: '14/03/2025',
     prioridad: 'alta',
     finalizada: false,
+    observaciones: ''
   }
 
   index: number = 0;

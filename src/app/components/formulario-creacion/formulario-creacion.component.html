@@ -1,1 +1,80 @@
-<p>formulario-creacion works!</p>
+<app-modal-base [esSidebar]="true" [titulo]="cabeceraModal">
+    <div body>
+        <form [formGroup]="formularioTareas">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <label for="descripcion">Descripción de la tarea*</label>
+                    <input 
+                        aria-label="descipcion de la tarea" 
+                        type="text" class="form-control form-control" 
+                        placeholder="Escriba acá su tarea" 
+                        formControlName="descripcion">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <label for="tipo">Tipo*</label>
+                    <select 
+                        class="form-select" 
+                        aria-label="Tipo de tarea"
+                        formControlName="tipo"
+                    >
+                        <option [value]="null" selected>Seleccione un tipo</option>
+                        @for (tipo of ltsTiposTarea; track $index) {
+                            <option [value]="tipo.tipo">{{tipo.descripcion}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="prioridad">Prioridad*</label>
+                    <select 
+                        class="form-select"
+                        aria-label="prioridad de la tarea"
+                        formControlName="prioridad"
+                    >
+                        <option [value]="null">Seleccione una prioridad</option>
+                        @for (prioridad of ltsPrioridades; track $index) {
+                            <option [value]="prioridad.tipo">{{prioridad.descipcion}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="descripcion">Lugar</label>
+                    <input 
+                        aria-label="Lugar de la tarea" 
+                        type="text" class="form-control form-control" 
+                        placeholder="El lugar donde se realizará la tarea" 
+                        formControlName="lugar">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <label for="fecha">Fecha*</label>
+                    <div class="input-group">
+                        <input
+                            class="form-control"
+                            placeholder="yyyy-mm-dd"
+                            name="dp"
+                            formControlName="fecha"
+                            ngbDatepicker
+                            #d="ngbDatepicker"
+                        />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea class="form-control" formControlName="observaciones"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div accion>
+        <button type="button" class="btn btn__small btn__gris-claro mx-3" (click)="crearEditarTarea()" [disabled]="!formularioTareas.valid">Aceptar</button>
+    </div>
+    
+</app-modal-base>

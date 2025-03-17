@@ -1,8 +1,20 @@
 export interface Tarea {
-    descricion: string,
+    descripcion: string,
     tipo: 'laboral' | 'academica' | 'familiar' | 'hogar' | 'entretenimiento' | 'recreacion' | 'viaje',
     lugar: string,
     fecha: string,
     prioridad: 'alta' | 'media' | 'baja' | 'completada',
-    finalizada: boolean
+    observaciones: string,
+    finalizada: boolean,
+}
+
+export interface TiposTarea {
+    tipo: 'laboral' | 'academica' | 'familiar' | 'hogar' | 'entretenimiento' | 'recreacion' | 'viaje',
+    descripcion: String,
+    logo: string
+}
+
+export interface PrioridadesTarea {
+    tipo: 'alta' | 'media' | 'baja' | 'completada',
+    descipcion: string;
 }

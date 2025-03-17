@@ -19,7 +19,7 @@
     border-radius: 10px;
 
     &--header {
-        margin: 0 1.6rem;
+        margin: 0;
         min-height: 52px;
         padding: 16px;
         border-radius: 10px 10px 0 0;
@@ -38,6 +38,7 @@
         align-items: center;
         width: 100%;
         height: 15vh;
+        padding-right: 16px;
     }
 
     &--content {
@@ -49,4 +50,18 @@
         border: 0;
         outline: 0;
     }
+}
+
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
+    background-color: $clr-naranja-800;
+    box-shadow: -2px 0 5px $clr-gris-100;
+    color: $clr-gris-800;
+    z-index: 1000;
+    overflow: auto;
 }

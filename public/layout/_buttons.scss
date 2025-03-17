@@ -40,6 +40,11 @@
             background-color: $clr-gris-300;
             color: $clr-gris-500;
         }
+        &:disabled {
+            background-color: $clr-gris-500;
+            color: $clr-gris-50;
+            opacity: 90%;
+        }
     }
 
     &__gris-claro {
@@ -48,6 +53,11 @@
         &:hover {
             background-color: $clr-gris-500;
             color: $clr-gris-300;
+        }
+        &:disabled {
+            background-color: $clr-gris-300;
+            color: $clr-gris-50;
+            opacity: 50%;
         }
     }
 }
