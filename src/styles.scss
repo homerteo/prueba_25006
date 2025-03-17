@@ -1,3 +1,18 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
-@import "../public/layout/layout.scss"
+@import "../public/layout/layout.scss";
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    background-color: $clr-gris-900;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

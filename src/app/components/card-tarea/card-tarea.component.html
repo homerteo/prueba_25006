@@ -1,43 +1,26 @@
 <div class="card tarea-card">
     <div class="row">
-        <div class="col-1 h-100 flex justify-content-center align-items-center text__75" [ngClass]="establecerPrioridad(tarea.prioridad)">
+        <div class="col-1 h-100 d-flex justify-content-center align-items-center text__75" [ngClass]="establecerPrioridad(tarea.prioridad)">
             <em class="bi bi-dot"></em>
         </div>
         <div class="col-9">
             <div class="row">
-                <div class="col-1 m-0 p-0 text__clrgris200">
-                    @if (tarea.tipo === 'laboral') {
-                        <p><em class="bi bi-hammer "></em></p>
-                    } @else if (tarea.tipo === 'academica') {
-                        <p><em class="bi bi-laptop"></em></p>
-                    } @else if (tarea.tipo === 'familiar') {
-                        <p><em class="bi bi-person-heart"></em></p>
-                    } @else if (tarea.tipo === 'hogar') {
-                        <p><em class="bi bi-house-heart-fill"></em></p>
-                    } @else if (tarea.tipo === 'entretenimiento') {
-                        <p><em class="bi bi-controller"></em></p>
-                    } @else if (tarea.tipo === 'recreacion') {
-                        <p><em class="bi bi-balloon-fill"></em></p>
-                    } @else if (tarea.tipo === 'viaje') {
-                        <p><em class="bi bi-luggage-fill"></em></p>
-                    }
-                </div>
-                <div class="col-7">
-                    <p class="text__clrgris200"><strong>Tarea: </strong>{{tarea.descricion}}</p>
+                <div class="col-6">
+                    <p class="text__clrgris200"><strong>Tarea: <em [ngClass]="establecerIconoTipo(tarea.tipo)"></em></strong> {{tarea.descricion}}</p>
                 </div>
                 <div class="col"></div>
-                <div class="col-3 text__clrgris200">
+                <div class="col-4 text__clrgris200">
                     <p>{{tarea.fecha}}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <p class="text__clrgris200">
                     <em class="bi bi-geo"></em>
                     {{ tarea.lugar }}
                 </p>
             </div>
         </div>
-        <div class="col-2 flex justify-content-between align-items-center">
+        <div class="col-2 d-flex justify-content-between align-items-center">
             <button class="btn btn__icon"><em class="bi bi-eye-fill"></em></button>
             <button class="btn btn__icon"><em class="bi bi-trash-fill"></em></button>
         </div>
