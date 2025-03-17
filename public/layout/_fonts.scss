@@ -1,0 +1,15 @@
+@import './variables';
+
+.text {
+    &__clrblanco {
+        color: $clr-blanco;
+    }
+
+    &__clrgris200{
+        color: $clr-gris-200;
+    }
+
+    &__75 {
+        font-size: 75px;
+    }
+}

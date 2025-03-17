@@ -1,0 +1,6 @@
+@use "sass:math";
+$base-font-size: 16px;
+
+@function px-rex($target, $context: $base-font-size) {
+    @return math.div($target, $context) * 1rem;
+}

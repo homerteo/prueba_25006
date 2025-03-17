@@ -1,0 +1,17 @@
+@import './variables';
+
+.btn {
+    &__icon {
+        min-width: 25px !important;
+        width: 25px !important;
+        height: 25px !important;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $clr-icons !important;
+        &:hover {
+            color: $clr-icon-hover !important;
+        }
+    }
+}
