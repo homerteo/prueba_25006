@@ -1,9 +1,10 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ModalBaseComponent } from "../../core/components/modal-base/modal-base.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrioridadesTarea, Tarea, TiposTarea } from 'src/app/core/interfaces/tarea.interface';
 import { NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { DominiosService } from 'src/app/services/dominios/dominios.service';
 
 @Component({
   selector: 'app-formulario-creacion',
@@ -16,69 +17,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './formulario-creacion.component.html',
   styleUrl: './formulario-creacion.component.scss'
 })
-export class FormularioCreacionComponent {
+export class FormularioCreacionComponent implements OnInit {
   @Input() cabeceraModal: string = 'Crear tarea';
   @Input() tarea!: Tarea; 
   @Input() esEditar: boolean = false;
   formularioTareas!: FormGroup;
-  ltsTiposTarea: TiposTarea[] = [
-    {
-      tipo: 'laboral',
-      descripcion: 'Laboral',
-      logo: 'bi bi-hammer'
-    },
-    {
-      tipo: 'academica',
-      descripcion: 'Academica',
-      logo: 'bi bi-laptop'
-    },
-    {
-      tipo: 'familiar',
-      descripcion: 'Familiar',
-      logo: 'bi bi-person-heart'
-    },
-    {
-      tipo: 'hogar',
-      descripcion: 'Hogar',
-      logo: 'bi bi-house-heart-fill'
-    },
-    {
-      tipo: 'entretenimiento',
-      descripcion: 'Entretenimiento',
-      logo: 'bi bi bi-controller'
-    },
-    {
-      tipo: 'recreacion',
-      descripcion: 'Recreación',
-      logo: 'bi bi-balloon-fill'
-    },
-    {
-      tipo: 'viaje',
-      descripcion: 'Viaje',
-      logo: 'bi bi-luggage-fill'
-    },
-  ];
-
-  ltsPrioridades: PrioridadesTarea[] = [
-    {
-      tipo: 'alta',
-      descipcion: 'Alta',
-    },
-    {
-      tipo: 'media',
-      descipcion: 'Media',
-    },
-    {
-      tipo: 'baja',
-      descipcion: 'Baja',
-    },
-    {
-      tipo: 'completada',
-      descipcion: 'Completada',
-    }
-  ]
+  ltsTiposTarea!: TiposTarea[];
+  ltsPrioridades!: PrioridadesTarea[];
 
   private readonly _fb = inject(FormBuilder);
+  private readonly _dominiosService = inject(DominiosService);
 
   constructor() {
     this.formularioTareas = this._fb.group({
@@ -88,6 +36,23 @@ export class FormularioCreacionComponent {
       prioridad: [null, Validators.required],
       tipo: [null, Validators.required],
       observaciones: ['']
+    })
+  }
+
+  ngOnInit(): void {
+    this.consultarTipos();
+    this.consultarPrioridades();
+  }
+
+  consultarTipos() {
+    this._dominiosService.consultarTipos().subscribe(response => {
+      this.ltsTiposTarea = response;
+    })
+  }
+
+  consultarPrioridades() {
+    this._dominiosService.consultarPrioridades().subscribe(response => {
+      this.ltsPrioridades = response;
     })
   }
 

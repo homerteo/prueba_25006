@@ -1,1 +1,3 @@
-<app-card-tarea [tarea]="tarea" [index]="index"></app-card-tarea>
+@for (tarea of tareas; track $index) {
+    <app-card-tarea [tarea]="tarea" [index]="index"></app-card-tarea>
+}
