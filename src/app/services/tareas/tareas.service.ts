@@ -116,6 +116,7 @@ export class TareasService {
 
   eliminarTarea(id: number) {
     this.tareas = this.tareas.filter(t => t.id !== id);
+    console.log('eliminarTarea', this.tareas);
     this.tareasSubject.next(this.tareas);
   }
 

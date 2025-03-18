@@ -1,3 +1,3 @@
 @for (tarea of tareas; track $index) {
-    <app-card-tarea [tarea]="tarea" [index]="index"></app-card-tarea>
+    <app-card-tarea [tarea]="tarea" [index]="index" (refrescar)="consultarTareas()"></app-card-tarea>
 }
