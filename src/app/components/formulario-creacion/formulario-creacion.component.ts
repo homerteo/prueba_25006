@@ -2,9 +2,10 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { ModalBaseComponent } from "../../core/components/modal-base/modal-base.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrioridadesTarea, Tarea, TiposTarea } from 'src/app/core/interfaces/tarea.interface';
-import { NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { DominiosService } from 'src/app/services/dominios/dominios.service';
+import { TareasService } from 'src/app/services/tareas/tareas.service';
 
 @Component({
   selector: 'app-formulario-creacion',
@@ -27,6 +28,8 @@ export class FormularioCreacionComponent implements OnInit {
 
   private readonly _fb = inject(FormBuilder);
   private readonly _dominiosService = inject(DominiosService);
+  private readonly _tareasService = inject(TareasService);
+  private readonly _activeModal = inject(NgbActiveModal);
 
   constructor() {
     this.formularioTareas = this._fb.group({
@@ -42,6 +45,9 @@ export class FormularioCreacionComponent implements OnInit {
   ngOnInit(): void {
     this.consultarTipos();
     this.consultarPrioridades();
+    if(this.esEditar) {
+      this.llenarFormularioTareas();
+    }
   }
 
   consultarTipos() {
@@ -53,6 +59,20 @@ export class FormularioCreacionComponent implements OnInit {
   consultarPrioridades() {
     this._dominiosService.consultarPrioridades().subscribe(response => {
       this.ltsPrioridades = response;
+    })
+  }
+
+  llenarFormularioTareas() {
+    console.log(this.tarea.fecha);
+    const fecha = this.tarea.fecha.split('-');
+    console.log(fecha)
+    this.formularioTareas.patchValue({
+      descripcion: this.tarea.descripcion,
+      fecha: {year: Number(fecha[2]), month: Number(fecha[1]), day: Number(fecha[0])},
+      lugar: this.tarea.lugar,
+      prioridad: this.tarea.prioridad,
+      tipo: this.tarea.tipo,
+      observacion: this.tarea.observaciones,
     })
   }
 
@@ -73,6 +93,13 @@ export class FormularioCreacionComponent implements OnInit {
   crearEditarTarea() {
     const obj = this.crearObjetoCrearEditarTarea();
     console.log(obj);
+    if(this.esEditar) {
+      this._tareasService.editarTarea(obj);
+      this._activeModal.close();
+      return;
+    }
+    this._tareasService.crearTarea(obj);
+    return;
   }
 
 }

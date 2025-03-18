@@ -72,6 +72,8 @@ export class CardTareaComponent {
 
   abrirEditarTarea(tarea: Tarea) {
     const modalRef = this.modalService.open(FormularioCreacionComponent);
+    modalRef.componentInstance.esEditar = true;
+    modalRef.componentInstance.tarea = tarea;
   }
 
   toggleFinalizarTarea(index: number) {
