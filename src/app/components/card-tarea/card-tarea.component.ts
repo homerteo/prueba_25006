@@ -20,8 +20,8 @@ import { ToastContainerComponent } from '../toast-container/toast-container.comp
 })
 export class CardTareaComponent {
   @Input() tarea!: Tarea;
-  @Input() index!: number;
   @Output() refrescar = new EventEmitter();
+  @Output() editar = new EventEmitter<Tarea>()
 
   private readonly funcionesGlobales = new FucionesGlobales();
   private readonly _tareasService = inject(TareasService);
@@ -71,25 +71,22 @@ export class CardTareaComponent {
     return this.tarea.finalizada ? 'text__clrcompletada' : 'text__clrblanco'
   }
 
-  abrirModalEliminar(index: number, template: TemplateRef<any>) {
+  abrirModalEliminar(index: number) {
     const modalRef = this.modalService.open(ModalEliminarComponent);
     modalRef.result.then((result: boolean) => {
       if(result) {
         this._tareasService.eliminarTarea(index);
         this.refrescar.emit();
-        this._toastService.show({ template, classname: 'bg-danger text-light', delay: 10000 });
       }
     })
-  }
-
-  abrirEditarTarea(tarea: Tarea) {
-    const modalRef = this.modalService.open(FormularioCreacionComponent);
-    modalRef.componentInstance.esEditar = true;
-    modalRef.componentInstance.tarea = tarea;
   }
 
   toggleFinalizarTarea(index: number, template: TemplateRef<any>) {
     this._tareasService.completarTarea(index);
     this._toastService.show({template: template, classname: 'bg-success text-light', delay: 10000})
+  }
+
+  abrirEditarTarea(tarea: Tarea) {
+    this.editar.emit(tarea);
   }
 }

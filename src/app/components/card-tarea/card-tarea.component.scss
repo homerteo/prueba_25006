@@ -2,8 +2,9 @@
 
 .tarea-card {
     width: 40vw;
-    background-color: $clr-gris-800;
-    padding: 10px 15px
+    background-color: $clr-gris-800 !important;
+    padding: 10px 15px;
+    margin-top: 5px;
 }
 
 em {

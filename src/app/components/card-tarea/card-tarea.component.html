@@ -22,12 +22,11 @@
         </div>
         <div class="col-2 d-flex justify-content-between align-items-center">
             <button class="btn btn__icon" (click)="abrirEditarTarea(tarea)"><em class="bi bi-pencil-fill"></em></button>
-            <button class="btn btn__icon" (click)="abrirModalEliminar(tarea.id, dangerTpl)"><em class="bi bi-trash-fill"></em></button>
-            <button class="btn btn__icon text_75" [ngClass]="establecerColorFinalizada()" (click)="toggleFinalizarTarea(tarea.id, successTpl)"><em class="bi bi bi-check2"></em></button>
+            <button class="btn btn__icon" (click)="abrirModalEliminar(tarea.id!)"><em class="bi bi-trash-fill"></em></button>
+            <button class="btn btn__icon text_75" [ngClass]="establecerColorFinalizada()" (click)="toggleFinalizarTarea(tarea.id!, successTpl)"><em class="bi bi bi-check2"></em></button>
         </div>
     </div>
 </div>
 
 <ng-template #successTpl>Se modificó la tarea con éxito</ng-template>
-<ng-template #dangerTpl>Se elimonó la tarea con éxito</ng-template>
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

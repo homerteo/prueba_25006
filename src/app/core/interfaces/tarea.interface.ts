@@ -6,7 +6,7 @@ export interface Tarea {
     prioridad: 'alta' | 'media' | 'baja' | 'completada',
     observaciones: string,
     finalizada: boolean,
-    id: number,
+    id: number | null,
 }
 
 export interface TiposTarea {

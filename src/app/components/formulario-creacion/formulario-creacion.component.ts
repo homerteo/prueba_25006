@@ -63,9 +63,7 @@ export class FormularioCreacionComponent implements OnInit {
   }
 
   llenarFormularioTareas() {
-    console.log(this.tarea.fecha);
     const fecha = this.tarea.fecha.split('-');
-    console.log(fecha)
     this.formularioTareas.patchValue({
       descripcion: this.tarea.descripcion,
       fecha: {year: Number(fecha[2]), month: Number(fecha[1]), day: Number(fecha[0])},
@@ -86,13 +84,12 @@ export class FormularioCreacionComponent implements OnInit {
       tipo: this.formularioTareas.get('tipo')?.value,
       observaciones: this.formularioTareas.get('observaciones')?.value,
       finalizada: false,
-      id: 0
+      id: this.esEditar ? this.tarea.id : null
     }
   }
 
   crearEditarTarea() {
     const obj = this.crearObjetoCrearEditarTarea();
-    console.log(obj);
     if(this.esEditar) {
       this._tareasService.editarTarea(obj);
       this._activeModal.close();

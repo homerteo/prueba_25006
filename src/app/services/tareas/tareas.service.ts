@@ -102,6 +102,10 @@ export class TareasService {
   }
 
   crearTarea(tarea: Tarea) {
+    const newTarea = {
+      ...tarea,
+      id: this.tareas.length + 1
+    }
     this.tareas.push(tarea);
     this.tareasSubject.next(this.tareas);
   }
@@ -116,7 +120,6 @@ export class TareasService {
 
   eliminarTarea(id: number) {
     this.tareas = this.tareas.filter(t => t.id !== id);
-    console.log('eliminarTarea', this.tareas);
     this.tareasSubject.next(this.tareas);
   }
 
