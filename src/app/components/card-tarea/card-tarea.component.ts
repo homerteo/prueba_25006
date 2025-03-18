@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
 import { FormularioCreacionComponent } from '../formulario-creacion/formulario-creacion.component';
+import { TareasService } from 'src/app/services/tareas/tareas.service';
 
 @Component({
   selector: 'app-card-tarea',
@@ -19,11 +20,12 @@ export class CardTareaComponent {
   @Input() index!: number;
 
   private readonly funcionesGlobales = new FucionesGlobales();
+  private readonly _tareasService = inject(TareasService);
   private readonly modalService = inject(NgbModal);
 
 
-  establecerPrioridad(priorodad: 'alta' | 'media' | 'baja' | 'completada') {
-    return this.funcionesGlobales.establecerColorPrioridad(priorodad);
+  establecerPrioridad(priorodad: 'alta' | 'media' | 'baja' | 'completada', finalizada: boolean) {
+    return this.funcionesGlobales.establecerColorPrioridad(priorodad, finalizada);
   }
 
   establecerIconoTipo(tipo: 'laboral' | 'academica' | 'familiar' | 'hogar' | 'entretenimiento' | 'recreacion' | 'viaje' | '') {
@@ -55,6 +57,10 @@ export class CardTareaComponent {
     }
   }
 
+  establecerColorFinalizada() {
+    return this.tarea.finalizada ? 'text__clrcompletada' : 'text__clrblanco'
+  }
+
   abrirModalEliminar(index: number) {
     const modalRef = this.modalService.open(ModalEliminarComponent);
     modalRef.result.then((result: boolean) => {
@@ -66,6 +72,9 @@ export class CardTareaComponent {
 
   abrirEditarTarea(tarea: Tarea) {
     const modalRef = this.modalService.open(FormularioCreacionComponent);
-    
+  }
+
+  toggleFinalizarTarea(index: number) {
+    this._tareasService.completarTarea(index);
   }
 }

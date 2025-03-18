@@ -9,7 +9,17 @@
         color: $clr-gris-200;
     }
 
-    &__75 {
-        font-size: 75px;
+    &__clrcompletada {
+        color: $clr-completada !important;
     }
+
+    &__clrsincompletar {
+        color: $clor-sin-completar !important;
+    }
+
+    &__75 {
+        font-size: 75px !important;
+    }
+
+
 }

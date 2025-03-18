@@ -66,6 +66,7 @@ export class FormularioCreacionComponent implements OnInit {
       tipo: this.formularioTareas.get('tipo')?.value,
       observaciones: this.formularioTareas.get('observaciones')?.value,
       finalizada: false,
+      id: 0
     }
   }
 
