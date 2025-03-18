@@ -1,0 +1,16 @@
+@import './variables';
+
+.prioridad {
+    &--alta {
+        color: $clr-prioridad-alta;
+    }
+    &--media {
+        color: $clr-prioridad-media;
+    }
+    &--baja {
+        color: $clr-prioridad-baja;
+    }
+    &--completada {
+        color: $clr-completada;
+    }
+}

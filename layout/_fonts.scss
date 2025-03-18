@@ -1,0 +1,29 @@
+@import './variables';
+
+.text {
+    &__clrblanco {
+        color: $clr-blanco;
+    }
+
+    &__clrgris200{
+        color: $clr-gris-200;
+    }
+
+    &__clrorange50 {
+        color: $clr-orange-50;
+    }
+
+    &__clrcompletada {
+        color: $clr-completada !important;
+    }
+
+    &__clrsincompletar {
+        color: $clor-sin-completar !important;
+    }
+
+    &__75 {
+        font-size: 75px !important;
+    }
+
+
+}
