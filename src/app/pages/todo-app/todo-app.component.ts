@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CardTareaComponent } from "../../components/card-tarea/card-tarea.component";
 import { Tarea } from '../../core/interfaces/tarea.interface';
 import { TareasService } from 'src/app/services/tareas/tareas.service';
@@ -12,17 +12,23 @@ import { FormularioCreacionComponent } from 'src/app/components/formulario-creac
   imports: [
     CardTareaComponent,
     ToastContainerComponent,
-    ReactiveFormsModule,
+    FormsModule,
   ],
   templateUrl: './todo-app.component.html',
   styleUrl: './todo-app.component.scss'
 })
 export class TodoAppComponent implements OnInit {
   tareas!: Tarea[];
+  tareasFiltradas!: Tarea[];
+  filtroDescripcion: string = '';
+  
 
   private readonly _tareasService = inject(TareasService);
-  private readonly modalService = inject(NgbModal);
+  private readonly _modalService = inject(NgbModal);
   _toastService = inject(ToastService);
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.consultarTareas();
@@ -31,6 +37,7 @@ export class TodoAppComponent implements OnInit {
   consultarTareas() {
     this._tareasService.obtenerListaTareas().subscribe(response => {
       this.tareas = response;
+      this.tareasFiltradas = response;
     });
   }
 
@@ -40,8 +47,21 @@ export class TodoAppComponent implements OnInit {
   }
 
   editarTarea(tarea: Tarea) {
-    const modalRef = this.modalService.open(FormularioCreacionComponent);
+    const modalRef = this._modalService.open(FormularioCreacionComponent);
     modalRef.componentInstance.esEditar = true;
     modalRef.componentInstance.tarea = tarea;
+  }
+
+  filtrarDescripcion(event: any) {
+    console.log(event.target.value)
+    if(event.target.value = '') {
+      this.tareasFiltradas = this.tareas;
+    } 
+    this.tareasFiltradas = this.tareas.filter(t => t.descripcion.includes(event.target.value));
+  }
+
+  crearTarea() {
+    const modalRef = this._modalService.open(FormularioCreacionComponent);
+    modalRef.componentInstance.esEditar = false;
   }
 }

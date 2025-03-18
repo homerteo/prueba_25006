@@ -25,7 +25,7 @@ export class CardTareaComponent {
 
   private readonly funcionesGlobales = new FucionesGlobales();
   private readonly _tareasService = inject(TareasService);
-  private readonly modalService = inject(NgbModal);
+  private readonly _modalService = inject(NgbModal);
   _toastService = inject(ToastService);
 
   ngOnDestroy(): void {
@@ -72,7 +72,7 @@ export class CardTareaComponent {
   }
 
   abrirModalEliminar(index: number) {
-    const modalRef = this.modalService.open(ModalEliminarComponent);
+    const modalRef = this._modalService.open(ModalEliminarComponent);
     modalRef.result.then((result: boolean) => {
       if(result) {
         this._tareasService.eliminarTarea(index);

@@ -96,6 +96,7 @@ export class FormularioCreacionComponent implements OnInit {
       return;
     }
     this._tareasService.crearTarea(obj);
+    this._activeModal.close();
     return;
   }
 

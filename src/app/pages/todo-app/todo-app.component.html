@@ -1,11 +1,11 @@
 <div class="todo-container">
     <h1 class="text__clrorange50 text-center">Organizador de tareas</h1>
     <div class="row">
-        <div class="col-4">
-
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <button class="btn btn__gris-oscuro btn__lg" (click)="crearTarea()">CREAR TAREA</button>
         </div>
         <div class="col container-tareas">
-            @for (tarea of tareas; track $index) {
+            @for (tarea of tareasFiltradas; track $index) {
                 <app-card-tarea [tarea]="tarea" (refrescar)="tareaEliminada(dangerTpl)" (editar)="editarTarea(tarea)"></app-card-tarea>
             }
         </div>

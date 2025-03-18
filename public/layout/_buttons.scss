@@ -33,6 +33,13 @@
         font-size: 14px;
     }
 
+    &__lg {
+        height: 60px;
+        min-width: 120px;
+        font-size: 20px;
+        padding: 12px 24px 16px 24px;
+    }
+
     &__gris-oscuro {
         background-color: $clr-gris-500;
         color: $clr-gris-50;
