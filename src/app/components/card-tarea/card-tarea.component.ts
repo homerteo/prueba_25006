@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, Output, TemplateRef } from '@angular/core';
 import { Tarea } from '../../core/interfaces/tarea.interface';
 import { FucionesGlobales } from 'src/app/core/utils/funciones-globales';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { ToastContainerComponent } from '../toast-container/toast-container.comp
   templateUrl: './card-tarea.component.html',
   styleUrl: './card-tarea.component.scss'
 })
-export class CardTareaComponent {
+export class CardTareaComponent implements OnDestroy {
   @Input() tarea!: Tarea;
   @Output() refrescar = new EventEmitter();
   @Output() editar = new EventEmitter<Tarea>()
@@ -29,8 +29,6 @@ export class CardTareaComponent {
   _toastService = inject(ToastService);
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this._toastService.clear();
   }
 

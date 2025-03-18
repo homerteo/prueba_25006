@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, TemplateRef } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardTareaComponent } from "../../components/card-tarea/card-tarea.component";
 import { Tarea } from '../../core/interfaces/tarea.interface';
@@ -17,7 +17,7 @@ import { FormularioCreacionComponent } from 'src/app/components/formulario-creac
   templateUrl: './todo-app.component.html',
   styleUrl: './todo-app.component.scss'
 })
-export class TodoAppComponent implements OnInit {
+export class TodoAppComponent implements OnInit, OnDestroy {
   tareas!: Tarea[];
   tareasFiltradas!: Tarea[];
   filtroDescripcion: string = '';
@@ -32,6 +32,10 @@ export class TodoAppComponent implements OnInit {
 
   ngOnInit(): void {
     this.consultarTareas();
+  }
+
+  ngOnDestroy(): void {
+    this._toastService.clear();
   }
 
   consultarTareas() {
