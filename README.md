@@ -63,4 +63,13 @@ For more information on using the Angular CLI, including detailed command refere
 # Diseño
 ## paletas de colores:
 
-Las paletas de colores fueron tomadas de Material Design de google, específicamente de esta URL [Material Design Color System](https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors). 
+Las paletas de colores fueron tomadas de Material Design de google, específicamente de esta URL [Material Design Color System](https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors).
+
+## Librerías de estilos
+Utilicé bootstrap como la librería base de estilos y ngBootstrap para agilizar la utilización de modales. Muchos estilos fueron definidos de forma global utilizando el método para modificar los template de bootstrap.
+
+# Backend
+No realicé la construcción de un backend para la aplicación, por lo que simulé los servicios y de un estado de la aplicación usando funciones de la librería rxjs
+
+# Reutilización de componentes
+A pesar de lo pequeña de la aplicación, decidí hacer el componente de modal reutilizable y customizable, de modo que sirve como sidebar para la creación y edición de tareas, como para el mensaje de confirmación para eliminar tareas.
