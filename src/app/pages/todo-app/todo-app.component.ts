@@ -52,12 +52,11 @@ export class TodoAppComponent implements OnInit {
     modalRef.componentInstance.tarea = tarea;
   }
 
-  filtrarDescripcion(event: any) {
-    console.log(event.target.value)
-    if(event.target.value = '') {
-      this.tareasFiltradas = this.tareas;
+  filtrarDescripcion() {
+    if(this.filtroDescripcion.trim() === '') {
+      this.tareasFiltradas = [...this.tareas];
     } 
-    this.tareasFiltradas = this.tareas.filter(t => t.descripcion.includes(event.target.value));
+    this.tareasFiltradas = this.tareas.filter(t => t.descripcion.toLowerCase().includes(this.filtroDescripcion.toLocaleLowerCase()));
   }
 
   crearTarea() {
